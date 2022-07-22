@@ -1,21 +1,47 @@
-# Download and build the latest versions of the images:
+# Backend powered by Symfony/PHP
 
-docker-compose build --pull --no-cache
+## Prepare database
 
-# Start Docker Compose in detached mode:
+** Download and build the latest versions of the images:**
 
-docker-compose up -d
+``` docker-compose build --pull --no-cache```
 
-# Entities
+** Start Docker Compose in detached mode:**
 
-## Make entity
+``` docker-compose up -d```
 
-php bin/console make:entity
+## Code generation
 
-## Make migration
+### Entities
 
-php bin/console make:migration
+Make entity (PHP class)
 
-## Run migration
+```php bin/console make:entity```
 
-php bin/console doctrine:migrations:migrate
+Make migration (generate SQL script)
+
+```php bin/console make:migration```
+
+Run migration (execute SQL)
+
+```php bin/console doctrine:migrations:migrate```
+
+### Controllers
+
+```php bin/console make:controller```
+
+### Other
+
+```php bin/console make:crud Product```
+
+
+### VS Code extension
+
+Using this VS Code extension you can easily use `Ctrl+P` and type `symfony` to pop up the list of available commands.
+
+> https://marketplace.visualstudio.com/items?itemName=nadim-vscode.symfony-super-console
+
+
+## Run application
+
+```symfony server:start```
