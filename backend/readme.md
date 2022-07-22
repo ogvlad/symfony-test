@@ -2,11 +2,11 @@
 
 ## Prepare database
 
-** Download and build the latest versions of the images:**
+Download and build the latest versions of the images:
 
 ``` docker-compose build --pull --no-cache```
 
-** Start Docker Compose in detached mode:**
+Start Docker Compose in detached mode:
 
 ``` docker-compose up -d```
 
@@ -14,15 +14,15 @@
 
 ### Entities
 
-Make entity (PHP class)
+Make entity (PHP class):
 
 ```php bin/console make:entity```
 
-Make migration (generate SQL script)
+Make migration (generate SQL script):
 
 ```php bin/console make:migration```
 
-Run migration (execute SQL)
+Run migration (execute SQL):
 
 ```php bin/console doctrine:migrations:migrate```
 
@@ -37,7 +37,7 @@ Run migration (execute SQL)
 
 ### VS Code extension
 
-Using this VS Code extension you can easily use `Ctrl+P` and type `symfony` to pop up the list of available commands.
+Using this VS Code extension you can easily use `Ctrl+Shift+P` and type `symfony` to pop up the list of available commands.
 
 > https://marketplace.visualstudio.com/items?itemName=nadim-vscode.symfony-super-console
 
