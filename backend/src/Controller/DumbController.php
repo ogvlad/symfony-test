@@ -9,12 +9,12 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Book;
  
 /**
- * @Route("/api", name="api_")
+ * @Route("/api2", name="api_")
  */
-class BooksController extends AbstractController
+class DumbController extends AbstractController
 {
     /**
-     * @Route("/book", name="book_index", methods={"GET"})
+     * @Route("/book", name="book2_index", methods={"GET"})
      */
     public function index(): Response
     {
@@ -37,7 +37,7 @@ class BooksController extends AbstractController
     }
  
     /**
-     * @Route("/book", name="book_new", methods={"POST"})
+     * @Route("/book", name="book2_new", methods={"POST"})
      */
     public function new(Request $request): Response
     {
@@ -54,7 +54,7 @@ class BooksController extends AbstractController
     }
  
     /**
-     * @Route("/book/{id}", name="book_show", methods={"GET"})
+     * @Route("/book/{id}", name="book2_show", methods={"GET"})
      */
     public function show(int $id): Response
     {
@@ -77,7 +77,7 @@ class BooksController extends AbstractController
     }
  
     /**
-     * @Route("/book/{id}", name="book_edit", methods={"PUT"})
+     * @Route("/book/{id}", name="book2_edit", methods={"PUT"})
      */
     public function edit(Request $request, int $id): Response
     {
@@ -102,7 +102,7 @@ class BooksController extends AbstractController
     }
  
     /**
-     * @Route("/book/{id}", name="book_delete", methods={"DELETE"})
+     * @Route("/book/{id}", name="book2_delete", methods={"DELETE"})
      */
     public function delete(int $id): Response
     {
