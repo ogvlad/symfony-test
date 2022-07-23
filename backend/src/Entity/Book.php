@@ -48,6 +48,9 @@ class Book
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'books')]
     private Collection $categories;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $image = null;
+
     public function __construct()
     {
         $this->authors = new ArrayCollection();
@@ -199,6 +202,18 @@ class Book
     public function removeCategory(Category $category): self
     {
         $this->categories->removeElement($category);
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
