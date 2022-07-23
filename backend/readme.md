@@ -45,3 +45,9 @@ Using this VS Code extension you can easily use `Ctrl+Shift+P` and type `symfony
 ## Run application
 
 ```symfony server:start```
+
+## Console commands
+
+If you don't see the `app:parse` listed in console commands try clean the cache which will rebuild the list of available commands:
+
+```php bin/console cache:clear```
