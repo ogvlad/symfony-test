@@ -8,6 +8,10 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+use App\Entity\Book;
+use App\Repository\BookRepository;
+
+
 #[AsCommand(
     name: 'app:parse',
     description: 'Parses remote JSON with books.',
@@ -15,6 +19,15 @@ use Symfony\Component\Console\Output\OutputInterface;
 )]
 class ParseCommand extends Command
 {
+    private $bookRepository;
+
+    public function __construct(BookRepository $bookRepository)
+    {
+        // $this->entityManager = $entityManager;
+        $this->bookRepository = $bookRepository;
+        parent::__construct();
+    }
+
     private function get_decoded_json(OutputInterface $output)
     {
         $filename = 'var/cache/books.json';
@@ -53,13 +66,23 @@ class ParseCommand extends Command
             return Command::FAILURE;
         }
         
+        $em = $this->entityManager;
+
         $authors = array();
         foreach($books as $id=>$book) {
+            $dbBook = new Book();
 
             $output->writeln("[$id][Title] $book->title");
-            $output->writeln("[$id][ISBN] $book->isbn");
-            $output->writeln("[$id][PageCount] $book->pageCount");
-            $output->writeln("[$id][Status] $book->status");
+
+            $dbBook->setTitle($book->title);
+            $dbBook->setIsbn($book->isbn);
+            $dbBook->setPageCount($book->pageCount);
+            $dbBook->setStatus($book->status);
+
+            // $dbBook->setPublishedDate($book->pageCount);
+            // $dbBook->setThumbnailUrl($book->pageCount);
+            // $dbBook->setShortDescription($book->pageCount);
+            // $dbBook->setLongDescription($book->pageCount);
 
             // $this->log($output, $id, $book, 'publishedDate');
             $this->log($output, $id, $book, 'shortDescription');
@@ -68,7 +91,9 @@ class ParseCommand extends Command
             // $output->writeln($id.': '.$book->authors);
             // $output->writeln($id.': '.$book->categories);
             $output->writeln("");
+            $em->persist($dbBook);
         }
+        $em->flush();
         // var_dump($books);
         //print_r($books);
         
